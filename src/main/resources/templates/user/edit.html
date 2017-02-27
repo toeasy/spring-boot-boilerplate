@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="include/layout">
+<head>
+
+    <title>修改</title>
+</head>
+<body>
+
+<div th:fragment="content" th:remove="tag" id="page-wrapper">
+    <h1 th:text="${userInfo.name}">Hello World</h1>
+    <div th:text="${userInfo.id}">aa</div>
+    <div th:text="${userInfo.loginName}">aa</div>
+    <div th:text="${userInfo.password}">aa</div>
+
+    <form method="POST" th:action="@{/user/edit/}+${userInfo.id}">
+        <input type="hidden" name="id" id="id" th:value="*{id}"/>
+        <input type="text" name="name" id="name" th:value="*{name}"/>
+        <input type="text" name="loginName" id="loginName" th:value="${loginName}"/>
+        <input type="submit" value="提交"/>
+    </form>
+
+
+</div>
+</body>
+</html>
