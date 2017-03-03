@@ -5,11 +5,12 @@ import com.xn.mars.common.ID;
 import com.xn.mars.domain.Result;
 import com.xn.mars.domain.UserInfo;
 import com.xn.mars.service.UserInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,10 @@ import java.util.List;
  * on 2017-02-18 16:23
  */
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
-
+  final static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Resource
     private UserInfoService userInfoService;
 
@@ -34,7 +35,7 @@ public class UserController {
     public String list(ModelMap map) {
         List<UserInfo> userInfoList = userInfoService.queryUser();
         map.addAttribute("list", userInfoList);
-        System.out.println("userInfoList = " + userInfoList);
+        logger.info("userInfoList = {}", userInfoList);
 
         return "user/list";
     }

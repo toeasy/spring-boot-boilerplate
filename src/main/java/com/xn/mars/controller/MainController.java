@@ -1,8 +1,8 @@
 package com.xn.mars.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * Created by Liang
  * 2017-02-16 16:26.
  */
-@Controller
+@RestController
 public class MainController {
 
 

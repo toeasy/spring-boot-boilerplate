@@ -1,7 +1,6 @@
 package com.xn.mars.task;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +11,7 @@ import java.util.Date;
  * on 2017-02-18 22:46
  */
 
-@Component
+//@Component
 public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
