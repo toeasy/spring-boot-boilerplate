@@ -27,17 +27,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-  final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    final static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Resource
     private UserInfoService userInfoService;
 
     @RequestMapping("/list")
-    public String list(ModelMap map) {
+    public List<UserInfo> list(ModelMap map) {
         List<UserInfo> userInfoList = userInfoService.queryUser();
         map.addAttribute("list", userInfoList);
         logger.info("userInfoList = {}", userInfoList);
 
-        return "user/list";
+        return userInfoList;
     }
 
     @RequestMapping("/page")
@@ -48,7 +48,7 @@ public class UserController {
         System.out.println(pageable);
         Result<Page<UserInfo>> userInfoPage = userInfoService.query(pageable);
         map.addAttribute("page", userInfoPage);
-        System.out.println("userInfoPage = " + userInfoPage);
+        logger.info("userInfoPage = " + userInfoPage);
 
         return userInfoPage.getData();
     }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="logFormat">
+            %d{yyyy-MM-dd HH:mm:ss.SSS}{GMT+8} [%thread] %-5level %logger{35} - %msg %n
+        </Property>
+        <Property name="LOG_HOME">d:\logs</Property>
+        <Property name="CLIENT_NAME">支付服务#2</Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logFormat}"/>
+        </Console>
+
+        <NoSql name="mongo">
+            <XNMongoDb  server="10.16.17.15" databaseName="lqj_test" collectionName="aabc"
+                     username="test3" password="test3" clientName="${CLIENT_NAME}"/>
+        </NoSql>
+
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_HOME}/pay.log"
+                                 filePattern="${LOG_HOME}/pay-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${logFormat}"/>
+            <!-- 备份-->
+            <Policies>
+                <TimeBasedTriggeringPolicy  interval="1"  modulate="true"/>
+                <SizeBasedTriggeringPolicy size="30 MB"/>
+            </Policies>
+           <DefaultRolloverStrategy  fileIndex="max" max="30">
+               <Delete basePath="${LOG_HOME}" maxDepth="2">
+                    <IfFileName glob="*/app-*.log.gz" />
+                    <IfLastModified age="60d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+    <Loggers>
+        <Logger name="de.codecentric.boot.admin.services.ApplicationRegistrator" level="WARN" additivity="false">
+            <appender-ref ref="RollingRandomAccessFile"/>
+        </Logger>
+
+        <Logger name="com.xn" level="INFO" additivity="true">
+            <appender-ref ref="mongo"/>
+        </Logger>
+
+        <asyncRoot level="info" includeLocation="true">
+            <AppenderRef ref="STDOUT"/>
+            <!--<appender-ref ref="mongo"/>-->
+        </asyncRoot>
+    </Loggers>
+</Configuration>
