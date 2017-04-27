@@ -15,8 +15,8 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 public class ShowcaseApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
-
+//		System.setProperty("Log4jContextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
+		System.out.println("args = 时间 " + args);
 		SpringApplication.run(ShowcaseApplication.class, args);
 	}
 

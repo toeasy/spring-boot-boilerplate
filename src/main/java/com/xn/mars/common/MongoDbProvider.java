@@ -24,7 +24,7 @@ import org.apache.logging.log4j.util.Strings;
 /**
  * The MongoDB implementation of {@link NoSqlProvider}.
  */
-@Plugin(name = "XNMongoDb", category = "Core", printObject = true)
+//@Plugin(name = "XNMongoDb", category = "Core", printObject = true)
 public final class MongoDbProvider implements NoSqlProvider<XNMongoDbConnection> {
 
     private static final WriteConcern DEFAULT_WRITE_CONCERN = WriteConcern.ACKNOWLEDGED;

@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <style>
+        @import url("//unpkg.com/element-ui/lib/theme-default/index.css");
+
+
+    </style>
+</head>
+<body>
+
+
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="//unpkg.com/element-ui/lib/index.js"></script>
+<div id="app">
+    <template>
+
+        <el-button :plain="true" @click="open5">消息</el-button>
+        <el-button :plain="true" @click="open6">成功</el-button>
+        <el-button :plain="true" @click="open7">警告</el-button>
+        <el-button :plain="true" @click="open8">错误</el-button>
+    </template>
+    </template>
+</div>
+<script>
+    var Main = {
+        methods: {
+            open5() {
+                this.$message({
+                    showClose: true,
+                    message: '这是一条消息提示'
+                });
+            },
+
+            open6() {
+                this.$message({
+                    showClose: true,
+                    message: '恭喜你，这是一条成功消息',
+                    type: 'success'
+                });
+            },
+
+            open7() {
+                this.$message({
+                    showClose: true,
+                    message: '警告哦，这是一条警告消息',
+                    type: 'warning'
+                });
+            },
+
+            open8() {
+                this.$message({
+                    showClose: true,
+                    message: '错了哦，这是一条错误消息',
+                    type: 'error'
+                });
+            }
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+</script>
+</body>
+</html>

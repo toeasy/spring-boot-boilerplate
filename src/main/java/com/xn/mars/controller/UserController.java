@@ -56,7 +56,7 @@ public class UserController {
     @RequestMapping("/find/{id}")
     public String find(@PathVariable String id) {
 
-        return "user/show";
+        return "user.html/show";
     }
 
     /**
@@ -69,7 +69,7 @@ public class UserController {
     @RequestMapping("/register")
     public String toRegister(@ModelAttribute UserInfo userInfo) {
 
-        return "user/register";
+        return "user.html/register";
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserController {
         redirectAttributes.addFlashAttribute("result", result);
 
         //重定向到列表页面
-        return "redirect:/user/list";
+        return "redirect:/user.html/list";
     }
 
     /**
@@ -103,7 +103,7 @@ public class UserController {
     public String toEdit(@PathVariable String id, ModelMap map) {
         UserInfo userInfo = userInfoService.findOne(id);
         map.addAttribute("userInfo", userInfo);
-        return "user/edit";
+        return "user.html/edit";
     }
 
     /**
@@ -120,14 +120,14 @@ public class UserController {
 
         //校验未通过，返回当前页面重填
         if (bindingResult.hasErrors()) {
-            return "/user/edit";
+            return "/user.html/edit";
         }
         //处理业务逻辑
         Result<UserInfo> result = userInfoService.save(userInfo);
 
         redirectAttributes.addFlashAttribute("result", result);
         System.out.println("result = " + result);
-        return "redirect:/user/list";
+        return "redirect:/user.html/list";
     }
 
     /**
@@ -143,7 +143,7 @@ public class UserController {
         Result<UserInfo> result = userInfoService.lock(id);
 
         redirectAttributes.addFlashAttribute("result", result);
-        return "redirect:/user/list";
+        return "redirect:/user.html/list";
     }
 
     /**
@@ -160,7 +160,7 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("result", result);
 
-        return "redirect:/user/list";
+        return "redirect:/user.html/list";
 
     }
 
